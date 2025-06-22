@@ -17,7 +17,7 @@ pipeline {
         stage('Actualizar Servidor 1') {
             steps {
                 sshagent(['webserver']) {
-                    sh 'ssh -o StrictHostKeyChecking=no admin_servidor@tu_servidor_1 "sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y"'
+                    sh 'ssh -o StrictHostKeyChecking=no vagrant@192.168.56.20 "sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y"'
                 }
             }
         }
