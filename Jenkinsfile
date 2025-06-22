@@ -5,7 +5,7 @@ pipeline {
         stage('Preparar SSH') {
             steps {
                 // Asegúrate de que el plugin SSH Agent esté instalado y la credencial configurada
-                sshagent(['ssh-servidores-actualizacion']) { // Reemplaza con el ID de tu credencial
+                sshagent(['vagrant']) { // Reemplaza con el ID de tu credencial
                     script {
                         // Opcional: Probar la conexión SSH a uno de los servidores
                         sh 'ssh -o StrictHostKeyChecking=no vagrant@192.168.56.20 "echo Conectado"'
@@ -16,7 +16,7 @@ pipeline {
 
         stage('Actualizar Servidor 1') {
             steps {
-                sshagent(['ssh-servidores-actualizacion']) {
+                sshagent(['vagrant']) {
                     sh 'ssh -o StrictHostKeyChecking=no admin_servidor@tu_servidor_1 "sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y"'
                 }
             }
@@ -24,7 +24,7 @@ pipeline {
 
         stage('Actualizar Servidor 2') {
             steps {
-                sshagent(['ssh-servidores-actualizacion']) {
+                sshagent(['vagrant']) {
                     sh 'ssh -o StrictHostKeyChecking=no vagrant@192.168.56.21 "sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y"'
                 }
             }
